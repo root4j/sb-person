@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<!--  main-fragment (title, mainContent)  -->
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{layouts/main-layout :: main-fragment(  
+      ~{::title},
+      ~{:: #home-main-content}
+      )}">
+    <head>
+        <title>Home</title>
+    </head>
+    <body>
+        <div id="home-main-content">
+            <!-- Page Heading -->
+            <h1 class="h3 mb-4 text-gray-800">Home</h1>
+        </div>
+    </body>
+</html>

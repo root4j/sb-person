@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<!--  main-fragment (title, mainContent)  -->
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{layouts/main-layout :: main-fragment(  
+      ~{::title},
+      ~{:: #ciudad-main-content}
+      )}">
+    <head>
+        <title>Ciudades</title>
+    </head>
+    <body>
+        <div id="ciudad-main-content">
+            <!-- Page Heading -->
+            <h1 class="h3 mb-4 text-gray-800">Ciudades</h1>
+
+            <div class="row">
+                <!-- Area de Formulario -->
+                <div class="col-xl-12 col-lg-12">
+                    <div class="card shadow mb-4">
+                        <!-- Card Header -->
+                        <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                            <h6 class="m-0 font-weight-bold text-primary">Formulario</h6>
+                        </div>
+                        <!-- Card Body -->
+                        <div class="card-body">
+                            <form class="user" action="#" th:action="@{/ciudad/save}" th:object="${objeto}" method="post">
+                                <div class="form-group">
+                                    <label for="codigo">Codigo</label>
+                                    <input type="text" class="form-control form-control-user" id="codigo" th:field="*{codigo}">
+                                </div>
+                                <div class="form-group">
+                                    <label for="nombre">Nombre</label>
+                                    <input type="text" class="form-control form-control-user" id="nombre" th:field="*{nombre}">
+                                </div>
+                                <button type="submit" class="btn btn-primary btn-user">Guardar</button>
+                            </form>                    
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <!-- Area de Tabla -->
+                <div class="col-xl-12 col-lg-12">
+                    <div class="card shadow mb-4">
+                        <!-- Card Header -->
+                        <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                            <h6 class="m-0 font-weight-bold text-primary">Datos</h6>
+                        </div>
+                        <!-- Card Body -->
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Codigo</th>
+                                            <th scope="col">Nombre</th>
+                                            <th scope="col">Acciones</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr th:each="obj : ${listado}">
+                                            <td th:text="${obj.codigo}"></td>
+                                            <td th:text="${obj.nombre}"></td>
+                                            <td>
+                                                <a class="btn btn-info" th:href="@{/ciudad/edit/{id}(id=${obj.codigo})}">
+                                                    <i class="fas fa-edit"></i>
+                                                </a>
+                                                &nbsp;
+                                                <a class="btn btn-danger" th:href="@{/ciudad/del/{id}(id=${obj.codigo})}">
+                                                    <i class="fas fa-trash"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
